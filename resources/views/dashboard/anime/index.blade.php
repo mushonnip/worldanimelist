@@ -38,6 +38,7 @@ Anime
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Gambar</th>
                                     <th>Nama Anime</th>
                                     <th>Episode</th>
                                     <th>Produser</th>
@@ -47,6 +48,7 @@ Anime
                             <tfoot>
                                 <tr>
                                     <th>No</th>
+                                    <th>Gambar</th>
                                     <th>Nama Anime</th>
                                     <th>Episode</th>
                                     <th>Produser</th>
@@ -57,20 +59,25 @@ Anime
                                 @foreach ($animes as $index => $anime)
                                 <tr>
                                     <td>{{ $index+1 }}</td>
+                                    <td><img src="{{ asset($anime->image) }}" alt="" srcset="" width="50px"></td>
                                     <td>{{ $anime->title }}</td>
                                     <td>{{ $anime->episodes }}</td>
                                     <td>{{ $anime->producers }}</td>
                                     <td>
                                         <div class="form-button-action">
-                                            <button class="btn btn-link btn-primary btn-lg"
+                                            <a href="{{ route('anime.edit', $anime->id) }}"
+                                                class="btn btn-link btn-primary btn-lg"
                                                 data-original-title="Edit Task"" id=" idEditButton">
                                                 <i class="fa fa-edit"></i>
-                                            </button>
-
-                                            <button data-toggle="tooltip" title="" class="btn btn-link btn-danger"
-                                                data-original-title="Remove">
-                                                <i class="fa fa-times"></i>
-                                            </button>
+                                            </a>
+                                            <form action="{{ route('anime.destroy', $anime->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button data-toggle="tooltip" title="" class="btn btn-link btn-danger"
+                                                    data-original-title="Remove">
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>

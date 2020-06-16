@@ -38,10 +38,17 @@ class AnimeController extends Controller
      */
     public function store(Request $request)
     {
-         // $genres = Genre::all();
-         Anime::create($request->all());
-         return redirect('/dashboard/anime');
-        //  return view('dashboard.anime.index', compact('genres'));
+        $anime = Anime::create($request->except('image'));
+
+        $anime->genres()->attach($request->genres);
+
+        if ($request->hasFile('image')) {
+            $url = $request->image->store('public');
+            $anime->image = $url;
+            $anime->save();
+        }
+
+        return redirect('/dashboard/anime');
     }
 
     /**
@@ -63,7 +70,8 @@ class AnimeController extends Controller
      */
     public function edit(Anime $anime)
     {
-        //
+        $genres = Genre::all();
+        return view('dashboard.anime.edit', ['anime' => $anime, 'genres' => $genres]);
     }
 
     /**
@@ -75,7 +83,8 @@ class AnimeController extends Controller
      */
     public function update(Request $request, Anime $anime)
     {
-        //
+        $anime->update($request->all());
+        return redirect('/dashboard/anime');
     }
 
     /**
@@ -86,6 +95,7 @@ class AnimeController extends Controller
      */
     public function destroy(Anime $anime)
     {
-        //
+        $anime->delete();
+        return redirect('/dashboard/anime');
     }
 }
