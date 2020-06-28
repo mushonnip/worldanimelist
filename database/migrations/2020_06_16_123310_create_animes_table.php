@@ -17,7 +17,7 @@ class CreateAnimesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->integer('episodes');
             $table->string('status');
             $table->date('aired');

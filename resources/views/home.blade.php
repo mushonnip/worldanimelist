@@ -3,6 +3,37 @@
 @section('title')
 Home
 @endsection
+@section('customcss')
+<style>
+    /* div[class^="col-"] {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: solid black 5px;
+    } */
+
+    .img-container {
+        position: relative;
+
+    }
+
+    .img-container img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .img-container .img-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 0 10px;
+
+        width: 100%;
+
+        color: #fff;
+        background: rgba(0, 0, 0, 0.7);
+    }
+</style>
+@endsection
 
 @section('content')
 <header>
@@ -62,13 +93,16 @@ Home
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
+                    @foreach ($animes as $anime)
                     <div class="card mb-4 box-shadow">
-                        <img class="card-img-top"
-                            data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail"
-                            alt="Card image cap">
+                        <div class="img-container">
+                            <img class="card-img-top" src="{{ $anime->image }}" alt="Card image cap">
+                            <div class='img-footer'>
+                                <p>Image Footer text</p>
+                            </div>
+                        </div>
                         <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text">{{ $anime->title }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
@@ -78,6 +112,7 @@ Home
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -87,12 +122,7 @@ Home
 
 <footer class="text-muted">
     <div class="container">
-        <p class="float-right">
-            <a href="#">Back to top</a>
-        </p>
-        <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-        <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a
-                href="../../getting-started/">getting started guide</a>.</p>
+
     </div>
 </footer>
 @endsection

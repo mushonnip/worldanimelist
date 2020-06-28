@@ -71,8 +71,8 @@ Anime
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <form action="{{ route('anime.destroy', $anime->id) }}" method="POST">
-                                                @csrf
                                                 @method('DELETE')
+                                                @csrf
                                                 <button data-toggle="tooltip" title="" class="btn btn-link btn-danger"
                                                     data-original-title="Remove">
                                                     <i class="fa fa-times"></i>

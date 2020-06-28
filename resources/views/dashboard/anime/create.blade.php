@@ -73,7 +73,8 @@ Create Anime
                                     <div class="selectgroup selectgroup-pills">
                                         @foreach ($genres as $genre)
                                         <label class="selectgroup-item">
-                                            <input type="checkbox" name="genres[]" value="{{ $genre->id }}" class="selectgroup-input">
+                                            <input type="checkbox" name="genres[]" value="{{ $genre->id }}"
+                                                class="selectgroup-input">
                                             <span class="selectgroup-button">{{ $genre->nama }}</span>
                                         </label>
                                         @endforeach
@@ -128,9 +129,11 @@ Create Anime
 @endsection
 
 @section('customjs')
-    <script>
-        $('#aired').datetimepicker({
-			format: 'MM/DD/YYYY',
-		});
-    </script>
+<script>
+    $('#aired').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
+
+
+</script>
 @endsection

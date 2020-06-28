@@ -15,8 +15,8 @@ class AnimeGenreRelation extends Migration
     {
         Schema::create('genre_anime', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('anime_id')->references('id')->on('animes');
-            $table->foreignId('genre_id')->references('id')->on('genres');
+            $table->foreignId('anime_id')->references('id')->on('animes')->onDelete('cascade');
+            $table->foreignId('genre_id')->references('id')->on('genres')->onDelete('cascade');
 
         });
     }
