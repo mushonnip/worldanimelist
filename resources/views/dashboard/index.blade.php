@@ -288,7 +288,7 @@ Dashboard
                     </div>
                     <div class="info">
                         <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-                            <span>@if ({{ Auth::user()->email }})
+                            <span>@if (Auth::check())
                                 {{ Auth::user()->name }}
                                 @endif
                                 <span class="user-level">Administrator</span>
