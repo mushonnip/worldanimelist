@@ -49,8 +49,9 @@ Edit Anime
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="image">Image</label><br>
-                                    <label for="image">Current: {{ $anime->image }}</label>
-                                    <input type="file" class="form-control-file" id="image" name="image" value="{{ $anime->image }}">
+                                    <img src="{{ asset($anime->image) }}" alt="{{ $anime->title }} image" srcset="" width="150">
+                                    <input type="file" class="form-control-file" id="image" name="image"
+                                        value="{{ $anime->image }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="title">Judul Anime</label>
@@ -98,15 +99,14 @@ Edit Anime
                                         @endforeach
                                     </div>
                                 </div>
-
-
                             </div>
 
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Aired Date</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control aired" id="aired" name="aired" value="{{ $anime->aired }}">
+                                        <input type="text" class="form-control aired" id="aired" name="aired"
+                                            value="{{ $anime->aired }}">
                                         <div class="input-group-append">
                                             <span class="input-group-text">
                                                 <i class="fa fa-calendar"></i>
@@ -136,20 +136,19 @@ Edit Anime
                             </div>
                         </div>
                     </form>
-                    {{-- </div> --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 
 @endsection
 @section('customjs')
 <script>
-
+    moment.locale('id')
     $('#aired').datetimepicker({
-			format: 'LL',
-		});
+            format: 'LL'
+    })
+
 </script>
 @endsection

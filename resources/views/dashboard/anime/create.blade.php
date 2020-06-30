@@ -53,7 +53,7 @@ Create Anime
                                 <div class="form-group">
                                     <label for="title">Judul Anime</label>
                                     <input type="text" class="form-control" id="title" placeholder="Nama Anime"
-                                        name="title">
+                                        name="title" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="episodes">Epidose</label>
@@ -112,7 +112,9 @@ Create Anime
                                     <input type="number" class="form-control" id="duration" placeholder="Durasi"
                                         name="duration">
                                 </div>
-                                <div class="form-group">
+                            </div>
+                            <div class="container-fluid main-container">
+                                <div class="form-group text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
@@ -130,8 +132,8 @@ Create Anime
 
 @section('customjs')
 <script>
-    $('#aired').datetimepicker({
-        format: 'YYYY-MM-DD'
+    $('#aired').datepicker({
+        format: 'LL',
     });
 
 
