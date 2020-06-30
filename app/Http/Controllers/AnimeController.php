@@ -57,9 +57,10 @@ class AnimeController extends Controller
      * @param  \App\Anime  $anime
      * @return \Illuminate\Http\Response
      */
-    public function show(Anime $anime)
+    public function show($id)
     {
-        //
+        $anime = Anime::find($id);
+        return response()->json($anime);
     }
 
     /**
@@ -84,6 +85,7 @@ class AnimeController extends Controller
     public function update(Request $request, Anime $anime)
     {
         $anime->update($request->all());
+        $anime->genres()->sync($request->genres);
         return redirect('/dashboard/anime');
     }
 

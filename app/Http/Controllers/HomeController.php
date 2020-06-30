@@ -22,4 +22,9 @@ class HomeController extends Controller
     {
         return view('auth.register');
     }
+
+    public function dashboard()
+    {
+        return view('dashboard.home');
+    }
 }

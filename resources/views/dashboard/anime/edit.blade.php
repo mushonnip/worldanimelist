@@ -34,7 +34,7 @@ Edit Anime
                 <div class="card-header">
                     <div class="d-flex align-items-center">
                         <h4 class="card-title">Edit Anime</h4>
-                        {{-- <a href="{{ route('anime.create') }}" class="btn btn-primary btn-round ml-auto">
+                        {{-- <a href="{{ route('p.anime.create') }}" class="btn btn-primary btn-round ml-auto">
                         <i class="fa fa-plus"></i>
                         Tambah Anime
                         </a> --}}
@@ -42,14 +42,16 @@ Edit Anime
                 </div>
                 <div class="card-body">
                     {{-- <div class="table-responsive"> --}}
-                    <form action="{{ route('anime.update', $anime->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('p.anime.update', $anime->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         <div class="row">
                             @csrf
                             @method('PUT')
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="image">Image</label><br>
-                                    <img src="{{ asset($anime->image) }}" alt="{{ $anime->title }} image" srcset="" width="150">
+                                    <img src="{{ asset($anime->image) }}" alt="{{ $anime->title }} image" srcset=""
+                                        width="150">
                                     <input type="file" class="form-control-file" id="image" name="image"
                                         value="{{ $anime->image }}">
                                 </div>
@@ -80,22 +82,28 @@ Edit Anime
                                 <div class="form-group">
                                     <label class="form-label">Genre</label>
                                     <div class="selectgroup selectgroup-pills">
-                                        @foreach ($genres as $genre)
-                                        @foreach ($anime->genres as $item)
-                                        @if ($item->id == $genre->id)
+
+
+                                        {{-- @foreach ($anime->genres as $item)
                                         <label class="selectgroup-item">
-                                            <input type="checkbox" name="genres[]" value="{{ $genre->id }}"
+                                            <input type="checkbox" name="genres[]" value="{{ $item->id }}"
                                                 class="selectgroup-input" checked>
-                                            <span class="selectgroup-button">{{ $genre->nama }}</span>
+                                            <span class="selectgroup-button">{{ $item->nama }}</span>
                                         </label>
-                                        @else
+                                        @endforeach --}}
+
+                                        @foreach ($genres as $item)
                                         <label class="selectgroup-item">
-                                            <input type="checkbox" name="genres[]" value="{{ $genre->id }}"
-                                                class="selectgroup-input">
-                                            <span class="selectgroup-button">{{ $genre->nama }}</span>
+                                            <input type="checkbox" name="genres[]" value="{{ $item->id }}"
+                                                class="selectgroup-input"
+                                                @foreach ($anime->genres as $genres)
+                                                @if ($item->id == $genres->id)
+                                                    checked
+                                                @endif
+                                                @endforeach
+                                                >
+                                            <span class="selectgroup-button">{{ $item->nama }}</span>
                                         </label>
-                                        @endif
-                                        @endforeach
                                         @endforeach
                                     </div>
                                 </div>

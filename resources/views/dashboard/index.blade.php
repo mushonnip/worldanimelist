@@ -8,7 +8,7 @@ Dashboard
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="blue">
 
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <img src="{{ asset('assets/img/logo.png') }}" alt="navbar brand" class="navbar-brand" width="100">
             </a>
             <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
@@ -267,7 +267,7 @@ Dashboard
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Account Setting</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Logout</a>
+                                    <a class="dropdown-item" href="/logout">Logout</a>
                                 </li>
                             </div>
                         </ul>
@@ -320,20 +320,20 @@ Dashboard
                 </div>
                 <ul class="nav nav-primary">
                     <li class="nav-item {{ (request()->is('dashboard')) ? 'active' : '' }}">
-                        <a href="{{ url('dashboard', []) }}">
-                            <i class="fas fa-desktop"></i>
+                        <a href="{{ route('dashboard') }}">
+                            <i class="fas fa-home"></i>
                             <p>Home</p>
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->is('dashboard/anime*')) ? 'active' : '' }}">
-                        <a href="{{ url('dashboard/anime', []) }}">
+                        <a href="{{ route('p.anime.index') }}">
                             <i class="fas fa-desktop"></i>
                             <p>Anime</p>
                         </a>
                     </li>
                     <li class="nav-item {{ (request()->is('dashboard/genre*')) ? 'active' : '' }}">
                         <a href="{{ url('dashboard/genre', []) }}">
-                            <i class="fas fa-desktop"></i>
+                            <i class="fas fa-hashtag"></i>
                             <p>Genre</p>
                         </a>
                     </li>

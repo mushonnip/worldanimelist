@@ -1,128 +1,147 @@
 @extends('layouts.base')
-
 @section('title')
-Home
+Dashboard
 @endsection
 @section('customcss')
 <style>
-    /* div[class^="col-"] {
-        margin: 0 !important;
-        padding: 0 !important;
-        border: solid black 5px;
-    } */
-
-    .img-container {
-        position: relative;
-
-    }
-
-    .img-container img {
-        height: 100%;
+    .main-panel {
         width: 100%;
-    }
-
-    .img-container .img-footer {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        padding: 0 10px;
-
-        width: 100%;
-
-        color: #fff;
-        background: rgba(0, 0, 0, 0.7);
     }
 </style>
 @endsection
-
 @section('content')
-<header>
-    <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8 col-md-7 py-4">
-                    <h4 class="text-white">About</h4>
-                    <p class="text-muted">Add some information about the album below, the author, or any other
-                        background context. Make it a few sentences long so folks can pick up some informative tidbits.
-                        Then, link them off to some social networking sites or contact information.</p>
-                </div>
-                <div class="col-sm-4 offset-md-1 py-4">
-                    <h4 class="text-white">Contact</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                        <li><a href="#" class="text-white">Like on Facebook</a></li>
-                        <li><a href="#" class="text-white">Email me</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-            <a href="#" class="navbar-brand d-flex align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
-                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-                    <circle cx="12" cy="13" r="4"></circle>
-                </svg>
-                <strong>Album</strong>
+<div class="wrapper">
+    <div class="main-header">
+        <!-- Navbar Header -->
+        <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
+
+            <a href="index.html" class="logo">
+                <img src="{{ asset('assets/img/logo.png') }}" alt="navbar brand" class="navbar-brand" width="100">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
-                aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
+            <div class="container-fluid">
+                <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+                    @if (Auth::check())
+                    <li class="nav-item dropdown hidden-caret">
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
+                            <div class="avatar-sm">
+                                <img src="{{ asset('assets/img/avatar.jpg') }}" alt="..."
+                                    class="avatar-img rounded-circle">
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user animated fadeIn">
+                            <div class="dropdown-user-scroll scrollbar-outer">
+                                <li>
+                                    <div class="user-box">
+                                        <div class="avatar-lg"><img src="{{ asset('assets/img/avatar.jpg') }}"
+                                                alt="image profile" class="avatar-img rounded"></div>
+                                        <div class="u-text">
+                                            <h4>@if (Auth::check())
+                                                {{ Auth::user()->name }}</h4>
+                                            @endif
+                                            <p class="text-muted">@if (Auth::check())
+                                                {{ Auth::user()->email }}
+                                                @endif</p><a href="profile.html"
+                                                class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/dashboard">Dashboard</a>
+                                    <a class="dropdown-item" href="/logout">Logout</a>
+                                </li>
+                            </div>
+                        </ul>
+                    </li>
+                    @else
+                    <li class="nav-item dropdown hidden-caret">
+                        <a href="/login" class="nav-link">
+                            <i class="fas fa-sign-in-alt"> Login</i>
+                        </a>
+                    </li>
+                    @endif
+
+                </ul>
+            </div>
+        </nav>
+        <!-- End Navbar -->
     </div>
-</header>
 
-<main role="main">
-
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">Album example</h1>
-            <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator,
-                etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-            <p>
-                <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-            </p>
-        </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
+    <div class="main-panel">
+        <div class="content">
+            <div class="page-inner">
+                <div class="row row-projects">
                     @foreach ($animes as $anime)
-                    <div class="card mb-4 box-shadow">
-                        <div class="img-container">
-                            <img class="card-img-top" src="{{ $anime->image }}" alt="Card image cap">
-                            <div class='img-footer'>
-                                <p>Image Footer text</p>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">{{ $anime->title }}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    <div class="col-sm-6 col-lg-3">
+                            <div class="card">
+                                <div class="p-2">
+                                    <img class="card-img-top rounded" src="{{ $anime->image }}"
+                                        alt="{{ $anime->title }}">
                                 </div>
-                                <small class="text-muted">9 mins</small>
+                                <div class="card-body pt-2">
+                                    <h4 class="mb-1 fw-bold">
+                                    <a data-id="{{ $anime->id }}" data-toggle="modal" data-target="#showAnime" onclick="animeDetail(event.target)">{{ $anime->title }}</a>
+                                    </h4>
+                                    <p class="text-muted small mb-2">
+                                        @foreach ($anime->genres as $genre)
+                                        {{ $genre->nama }}@if ($loop->last)
+
+                                        @else
+                                        ,
+                                        @endif
+                                        @endforeach
+                                    </p>
+                                </div>
                             </div>
-                        </div>
                     </div>
                     @endforeach
                 </div>
+                <!-- Modal Show -->
+                <div class="modal fade" id="showAnime" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header no-bd">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="" alt="" srcset="" width="250" id="animeImage">
+                                <h1 id="animeTitle"></h1>
+                            </div>
+                            <div class="modal-footer no-bd">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="copyright ml-auto">
+                    2020, made with <i class="fa fa-heart heart text-danger"></i> by <a href="#">Team</a>
+                </div>
+            </div>
+        </footer>
     </div>
+</div>
+@section('customjs')
+<script>
+    function animeDetail(event) {
+        var id  = $(event).data("id");
+        let _url = `/dashboard/anime/${id}`;
 
-</main>
-
-<footer class="text-muted">
-    <div class="container">
-
-    </div>
-</footer>
+        $.ajax({
+        url: _url,
+        type: "GET",
+        success: function(response) {
+            if(response) {
+                $('#animeImage').attr("src", response.image)
+                $('#animeTitle').text(response.title)
+            }
+        }
+        });
+    }
+</script>
 @endsection

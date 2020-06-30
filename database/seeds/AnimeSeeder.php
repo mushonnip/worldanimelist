@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Anime;
 
 class AnimeSeeder extends Seeder
 {
@@ -11,6 +12,17 @@ class AnimeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Anime::create(
+            [
+                'title' => 'Yesterday wo Utatte',
+                'image' => 'public/ywo.jpeg',
+                'episodes' => 12,
+                'status' => 'Finished Airing',
+                'aired' => '2020-04-05',
+                'producers' => ' TV Asahi, Sotsu, Delfi Sound, Lucent Pictures Entertainment, CyberAgent, AbemaTV, DMM.futureworks',
+                'studios' => 'Doga Kobo',
+                'duration' => 23,
+            ]
+        );
     }
 }

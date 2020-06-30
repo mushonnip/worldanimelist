@@ -26,7 +26,7 @@ Anime
                 <div class="card-header">
                     <div class="d-flex align-items-center">
                         <h4 class="card-title">Anime List</h4>
-                        <a href="{{ route('anime.create') }}" class="btn btn-primary btn-round ml-auto">
+                        <a href="{{ route('p.anime.create') }}" class="btn btn-primary btn-round ml-auto">
                             <i class="fa fa-plus"></i>
                             Add Anime
                         </a>
@@ -65,12 +65,12 @@ Anime
                                     <td>{{ $anime->producers }}</td>
                                     <td>
                                         <div class="form-button-action">
-                                            <a href="{{ route('anime.edit', $anime->id) }}"
+                                            <a href="{{ route('p.anime.edit', $anime->id) }}"
                                                 class="btn btn-link btn-primary btn-lg"
                                                 data-original-title="Edit Task"" id=" idEditButton">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <form action="{{ route('anime.destroy', $anime->id) }}" method="POST">
+                                            <form action="{{ route('p.anime.destroy', $anime->id) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button data-toggle="tooltip" title="" class="btn btn-link btn-danger"

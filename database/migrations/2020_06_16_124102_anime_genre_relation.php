@@ -17,7 +17,6 @@ class AnimeGenreRelation extends Migration
             $table->id();
             $table->foreignId('anime_id')->references('id')->on('animes')->onDelete('cascade');
             $table->foreignId('genre_id')->references('id')->on('genres')->onDelete('cascade');
-
         });
     }
 

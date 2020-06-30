@@ -12,11 +12,17 @@ class GenreSeeder extends Seeder
      */
     public function run()
     {
-        $faker = \Faker\Factory::create();
-        for ($i=0; $i < 5; $i++) {
-            Genre::create([
-                'nama' => $faker->Hentai
-            ]);
-        }
+        Genre::create([
+            'nama' => 'Slice of Life'
+        ]);
+        Genre::create([
+            'nama' => 'Drama'
+        ]);
+        Genre::create([
+            'nama' => 'Romance'
+        ]);
+        Genre::create([
+            'nama' => 'Seinen'
+        ]);
     }
 }

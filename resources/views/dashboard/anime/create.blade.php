@@ -34,7 +34,7 @@ Create Anime
                 <div class="card-header">
                     <div class="d-flex align-items-center">
                         <h4 class="card-title">Tambah Anime</h4>
-                        {{-- <a href="{{ route('anime.create') }}" class="btn btn-primary btn-round ml-auto">
+                        {{-- <a href="{{ route('p.anime.create') }}" class="btn btn-primary btn-round ml-auto">
                         <i class="fa fa-plus"></i>
                         Tambah Anime
                         </a> --}}
@@ -42,7 +42,7 @@ Create Anime
                 </div>
                 <div class="card-body">
                     {{-- <div class="table-responsive"> --}}
-                    <form action="{{ route('anime.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('p.anime.store') }}" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             @csrf
                             <div class="col-6">
@@ -132,10 +132,9 @@ Create Anime
 
 @section('customjs')
 <script>
-    $('#aired').datepicker({
-        format: 'LL',
-    });
-
-
+    moment.locale('id')
+    $('#aired').datetimepicker({
+            format: 'LL'
+    })
 </script>
 @endsection
