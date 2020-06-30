@@ -1,6 +1,6 @@
 @extends('layouts.base')
 @section('title')
-    Dashboard
+Dashboard
 @endsection
 @section('content')
 <div class="wrapper">
@@ -11,7 +11,8 @@
             <a href="index.html" class="logo">
                 <img src="{{ asset('assets/img/logo.png') }}" alt="navbar brand" class="navbar-brand" width="100">
             </a>
-            <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
+                data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
                     <i class="icon-menu"></i>
                 </span>
@@ -43,12 +44,14 @@
                 </div>
                 <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                     <li class="nav-item toggle-nav-search hidden-caret">
-                        <a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
+                        <a class="nav-link" data-toggle="collapse" href="#search-nav" role="button"
+                            aria-expanded="false" aria-controls="search-nav">
                             <i class="fa fa-search"></i>
                         </a>
                     </li>
                     <li class="nav-item dropdown hidden-caret">
-                        <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-envelope"></i>
                         </a>
                         <ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
@@ -113,12 +116,14 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="see-all" href="javascript:void(0);">See all messages<i class="fa fa-angle-right"></i> </a>
+                                <a class="see-all" href="javascript:void(0);">See all messages<i
+                                        class="fa fa-angle-right"></i> </a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown hidden-caret">
-                        <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell"></i>
                             <span class="notification">4</span>
                         </a>
@@ -130,7 +135,8 @@
                                 <div class="notif-scroll scrollbar-outer">
                                     <div class="notif-center">
                                         <a href="#">
-                                            <div class="notif-icon notif-primary"> <i class="fa fa-user-plus"></i> </div>
+                                            <div class="notif-icon notif-primary"> <i class="fa fa-user-plus"></i>
+                                            </div>
                                             <div class="notif-content">
                                                 <span class="block">
                                                     New user registered
@@ -171,7 +177,8 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="see-all" href="javascript:void(0);">See all notifications<i class="fa fa-angle-right"></i> </a>
+                                <a class="see-all" href="javascript:void(0);">See all notifications<i
+                                        class="fa fa-angle-right"></i> </a>
                             </li>
                         </ul>
                     </li>
@@ -231,17 +238,24 @@
                     <li class="nav-item dropdown hidden-caret">
                         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                             <div class="avatar-sm">
-                                <img src="{{ asset('assets/img/avatar.jpg') }}" alt="..." class="avatar-img rounded-circle">
+                                <img src="{{ asset('assets/img/avatar.jpg') }}" alt="..."
+                                    class="avatar-img rounded-circle">
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-user animated fadeIn">
                             <div class="dropdown-user-scroll scrollbar-outer">
                                 <li>
                                     <div class="user-box">
-                                        <div class="avatar-lg"><img src="{{ asset('assets/img/avatar.jpg') }}" alt="image profile" class="avatar-img rounded"></div>
+                                        <div class="avatar-lg"><img src="{{ asset('assets/img/avatar.jpg') }}"
+                                                alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text">
-                                            <h4>{{ Auth::user()->name }}</h4>
-                                            <p class="text-muted">{{ Auth::user()->email }}</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                            <h4>@if (Auth::check())
+                                                {{ Auth::user()->name }}</h4>
+                                            @endif
+                                            <p class="text-muted">@if (Auth::check())
+                                                {{ Auth::user()->email }}
+                                                @endif</p><a href="profile.html"
+                                                class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                                         </div>
                                     </div>
                                 </li>
@@ -274,8 +288,9 @@
                     </div>
                     <div class="info">
                         <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-                            <span>
+                            <span>@if ({{ Auth::user()->email }})
                                 {{ Auth::user()->name }}
+                                @endif
                                 <span class="user-level">Administrator</span>
                                 <span class="caret"></span>
                             </span>
