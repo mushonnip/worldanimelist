@@ -7,6 +7,10 @@ use App\Anime;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+
+    }
     public function index()
     {
         $animes = Anime::all();

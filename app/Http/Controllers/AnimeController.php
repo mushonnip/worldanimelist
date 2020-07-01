@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class AnimeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('show');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,16 +43,22 @@ class AnimeController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'title' => 'required',
+                'episodes' => 'required',
+            ]
+        );
+        // $data = $request->all();
         $anime = Anime::create($request->except('image'));
 
         $anime->genres()->attach($request->genres);
-
         if ($request->hasFile('image')) {
             $url = $request->image->store('public');
             $anime->image = $url;
             $anime->save();
         }
-
         return redirect('/dashboard/anime');
     }
 
@@ -99,5 +110,23 @@ class AnimeController extends Controller
     {
         $anime->delete();
         return redirect('/dashboard/anime');
+    }
+
+    public function addLoves(Request $request, Anime $anime)
+    {
+        $user = $request->user();
+        $user->loves()->attach($anime);
+        return redirect('/');
+    }
+    public function removeLoves(Request $request, Anime $anime)
+    {
+        $user = $request->user();
+        $user->loves()->detach($anime);
+        return redirect('/');
+    }
+    public function checkLoves(Request $request, Anime $anime)
+    {
+        $user = $request->user();
+        return $user->loves->contains($anime);
     }
 }

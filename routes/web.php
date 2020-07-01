@@ -13,29 +13,17 @@ Route::get('/logout', function () {
     return Redirect::to("/login");
 });
 
-// Route::group(['middleware' => ['auth']], function () {
-//     Route::prefix('dashboard')->group(function () {
-//         Route::get('', 'HomeController@dashboard')->name('dashboard');
-//         Route::prefix('anime')->group(function () {
-//             Route::get('', ['as' => 'anime', 'uses' => 'AnimeController@index']);
-//             Route::get('create', ['as' => 'anime.create', 'uses' => 'AnimeController@create']);
-//             Route::get('/{id}/edit', ['as' => 'anime.edit', 'uses' => 'AnimeController@edit']);
-//             Route::post('', ['as' => 'anime.store', 'uses' => 'AnimeController@store']);
-//             Route::patch('{id}', ['as' => 'anime.update', 'uses' => 'AnimeController@update']);
-//             Route::delete('{id}', ['as' => 'anime.destroy', 'uses' => 'AnimeController@destroy']);
-//         });
-
-//     });
-// });
+Route::get('/add-loves/{anime}', 'AnimeController@addLoves')->name('add-loves');
+Route::get('/remove-loves/{anime}', 'AnimeController@removeLoves')->name('remove-loves');
+Route::get('/check-loves/{anime}', 'AnimeController@checkLoves')->name('check-loves');
 
 Route::resource('dashboard/anime', 'AnimeController', [
     'as' => 'p'
 ]);
 Route::resource('dashboard/genre', 'GenreController');
+
 Route::get('dashboard/', function () {
     return view('dashboard.home');
-})->name('dashboard');
-// Route::get('dashboard/anime/{id}', ['uses' => 'AnimeController@show']);
-Auth::routes();
+})->name('dashboard')->middleware('auth');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();

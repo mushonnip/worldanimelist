@@ -73,26 +73,37 @@ Dashboard
                 <div class="row row-projects">
                     @foreach ($animes as $anime)
                     <div class="col-sm-6 col-lg-3">
-                            <div class="card">
-                                <div class="p-2">
-                                    <img class="card-img-top rounded" src="{{ $anime->image }}"
-                                        alt="{{ $anime->title }}">
-                                </div>
-                                <div class="card-body pt-2">
-                                    <h4 class="mb-1 fw-bold">
-                                    <a data-id="{{ $anime->id }}" data-toggle="modal" data-target="#showAnime" onclick="animeDetail(event.target)">{{ $anime->title }}</a>
-                                    </h4>
-                                    <p class="text-muted small mb-2">
-                                        @foreach ($anime->genres as $genre)
-                                        {{ $genre->nama }}@if ($loop->last)
-
-                                        @else
-                                        ,
-                                        @endif
-                                        @endforeach
-                                    </p>
-                                </div>
+                        <div class="card">
+                            <div class="p-2">
+                                <img class="card-img-top rounded" src="{{ $anime->image }}" alt="{{ $anime->title }}"
+                                    height="400">
                             </div>
+                            <div class="card-body pt-2">
+                                <div class="row mb-1">
+                                    <div class="col-6 pt-1 text-muted small">{{ $anime->tot_fav }} Loves</div>
+                                    <div class="col-6 text-right">
+                                        @if ($anime->is_fav)
+                                        <a href="{{ route('remove-loves', $anime->id) }}"><button type="submit" class="btn btn-icon btn-round btn-xs grey"><i class="fas fa-heart heart text-danger"></i></button></a>
+                                        @else
+                                        <a href="{{ route('add-loves', $anime->id) }}"><button type="submit" class="btn btn-icon btn-round btn-xs grey"><i class="far fa-heart heart text-danger"></i></button></a>
+                                        @endif
+                                    </div>
+                                </div>
+                                <h4 class="mb-1 fw-bold">
+                                    <a data-id="{{ $anime->id }}" data-toggle="modal" data-target="#showAnime"
+                                        onclick="animeDetail(event.target)">{{ $anime->title }}</a>
+                                </h4>
+                                <p class="text-muted small mb-2">
+                                    @foreach ($anime->genres as $genre)
+                                    {{ $genre->nama }}@if ($loop->last)
+
+                                    @else
+                                    ,
+                                    @endif
+                                    @endforeach
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     @endforeach
                 </div>
@@ -128,6 +139,20 @@ Dashboard
 </div>
 @section('customjs')
 <script>
+    $(document).ready(function () {
+
+    });
+    function check(param) {
+            $.ajax({
+                type: "GET",
+                url: "/check-loves/" + param,
+                dataType: "JSON",
+                success: function (response) {
+                    return response;
+                }
+            });
+         }
+
     function animeDetail(event) {
         var id  = $(event).data("id");
         let _url = `/dashboard/anime/${id}`;

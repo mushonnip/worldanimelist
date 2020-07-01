@@ -53,7 +53,7 @@ Create Anime
                                 <div class="form-group">
                                     <label for="title">Judul Anime</label>
                                     <input type="text" class="form-control" id="title" placeholder="Nama Anime"
-                                        name="title" required>
+                                        name="title">
                                 </div>
                                 <div class="form-group">
                                     <label for="episodes">Epidose</label>
