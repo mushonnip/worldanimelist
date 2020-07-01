@@ -134,7 +134,7 @@ Create Anime
 <script>
     moment.locale('id')
     $('#aired').datetimepicker({
-            format: 'LL'
+        format: 'YYYY-MM-DD'
     })
 </script>
 @endsection
