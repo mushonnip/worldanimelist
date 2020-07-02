@@ -39,7 +39,7 @@ class LoginTest extends TestCase
 
         $response = $this->post('/login', [
             'email' => $user->email,
-            'password' => 'invalid'
+            'password' => 'this is invalid pass'
         ]);
         $response->assertSessionHasErrors();
         $this->assertGuest();

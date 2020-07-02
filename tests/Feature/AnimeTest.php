@@ -28,6 +28,5 @@ class AnimeTest extends TestCase
             'message' => $data['name']." Berhasil Dibuat"
         ];
         $this->post(route('p.anime.store', $data))->assertStatus(201)->assertJson($message_json);
-
     }
 }
