@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 
 Route::get('/', 'HomeController@index');
 Route::get('/login', 'HomeController@login');
+Route::get('/register', 'HomeController@register');
 Route::get('/logout', function () {
     Session::flush();
     Auth::logout();

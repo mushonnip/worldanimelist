@@ -41,7 +41,7 @@ class GenreController extends Controller
         $this->validate(
             $request,
             [
-                'nama' => 'required',
+                'nama' => 'required|max:20',
             ]
         );
         Genre::create($request->all());
@@ -83,7 +83,7 @@ class GenreController extends Controller
         $this->validate(
             $request,
             [
-                'nama' => 'required',
+                'nama' => 'required:20',
             ]
         );
         $genre->update($request->all());
