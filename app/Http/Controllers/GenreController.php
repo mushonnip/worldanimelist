@@ -38,6 +38,12 @@ class GenreController extends Controller
     public function store(Request $request)
     {
         // $genres = Genre::all();
+        $this->validate(
+            $request,
+            [
+                'nama' => 'required',
+            ]
+        );
         Genre::create($request->all());
         return redirect('/dashboard/genre');
         // return view('dashboard.genre.index', compact('genres'));
@@ -74,6 +80,12 @@ class GenreController extends Controller
      */
     public function update(Request $request, Genre $genre)
     {
+        $this->validate(
+            $request,
+            [
+                'nama' => 'required',
+            ]
+        );
         $genre->update($request->all());
         return redirect('/dashboard/genre');
         // return view('dashboard.genre.index');

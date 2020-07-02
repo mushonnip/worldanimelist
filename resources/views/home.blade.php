@@ -82,10 +82,16 @@ Dashboard
                                 <div class="row mb-1">
                                     <div class="col-6 pt-1 text-muted small">{{ $anime->tot_fav }} Loves</div>
                                     <div class="col-6 text-right">
+                                        @if (Auth::check())
                                         @if ($anime->is_fav)
-                                        <a href="{{ route('remove-loves', $anime->id) }}"><button type="submit" class="btn btn-icon btn-round btn-xs grey"><i class="fas fa-heart heart text-danger"></i></button></a>
+                                        <a href="{{ route('remove-loves', $anime->id) }}"><button type="submit"
+                                                class="btn btn-icon btn-round btn-xs grey"><i
+                                                    class="fas fa-heart heart text-danger"></i></button></a>
                                         @else
-                                        <a href="{{ route('add-loves', $anime->id) }}"><button type="submit" class="btn btn-icon btn-round btn-xs grey"><i class="far fa-heart heart text-danger"></i></button></a>
+                                        <a href="{{ route('add-loves', $anime->id) }}"><button type="submit"
+                                                class="btn btn-icon btn-round btn-xs grey"><i
+                                                    class="far fa-heart heart text-danger"></i></button></a>
+                                        @endif
                                         @endif
                                     </div>
                                 </div>
