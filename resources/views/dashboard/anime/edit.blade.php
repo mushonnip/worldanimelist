@@ -24,7 +24,7 @@ Edit Anime
                 <i class="flaticon-right-arrow"></i>
             </li>
             <li class="nav-item">
-                <a href="#">Tambah</a>
+                <a href="#">Edit</a>
             </li>
         </ul>
     </div>
@@ -41,7 +41,16 @@ Edit Anime
                     </div>
                 </div>
                 <div class="card-body">
-                    {{-- <div class="table-responsive"> --}}
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <strong>Error!</strong> Ada beberapa masalah dengan inputanmu.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <form action="{{ route('p.anime.update', $anime->id) }}" method="POST"
                         enctype="multipart/form-data">
                         <div class="row">

@@ -26,94 +26,18 @@ Genre
                 <div class="card-header">
                     <div class="d-flex align-items-center">
                         <h4 class="card-title">Genre List</h4>
-                        <button class="btn btn-primary btn-round ml-auto" data-toggle="modal"
-                            data-target="#addRowModal">
-                            <i class="fa fa-plus"></i>
+                        <a href="{{ route('genre.create') }}" class="btn btn-primary btn-round ml-auto"">
+                            <i class=" fa fa-plus"></i>
                             Add Genre
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="card-body">
-                    <!-- Modal add -->
-                    <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header no-bd">
-                                    <h5 class="modal-title">
-                                        <span class="fw-mediumbold">
-                                            New</span>
-                                        <span class="fw-light">
-                                            Genre
-                                        </span>
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="small">Isikan form berikut</p>
-                                    <form action="{{ route('genre.store') }}" method="POST">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="genre">Nama Genre</label>
-                                                    <input type="text" class="form-control" id="genre"
-                                                        placeholder="Nama Genre" name="nama">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                </div>
-                                <div class="modal-footer no-bd">
-                                    <button type="submit" id="addRowButton" class="btn btn-primary">Add</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                </div>
-                                </form>
-                            </div>
-                        </div>
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <p>{{ $message }}</p>
                     </div>
-                    <!-- Modal edit -->
-                    <div class="modal fade" id="editGenre" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header no-bd">
-                                    <h5 class="modal-title">
-                                        <span class="fw-mediumbold">
-                                            Edit</span>
-                                        <span class="fw-light">
-                                            Genre
-                                        </span>
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p class="small">Isikan form berikut</p>
-                                    <form method="POST" id="formEdit">
-                                        @csrf
-                                        @method('PUT')
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="genre">Nama Genre</label>
-                                                    <input type="text" class="form-control" id="genre"
-                                                        placeholder="Nama Genre" name="nama">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                </div>
-                                <div class="modal-footer no-bd">
-                                    <button type="submit" id="editGenreButton" class="btn btn-primary">Submit</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
+                    @endif
                     <div class="table-responsive">
                         <table id="add-row" class="display table table-striped table-hover">
                             <thead>
@@ -141,11 +65,10 @@ Genre
                                     <td>{{ date('d-M-y', strtotime($genre->created_at)) }}</td>
                                     <td>
                                         <div class="form-button-action">
-                                            <button class="btn btn-link btn-primary btn-lg"
-                                                data-original-title="Edit Task" data-toggle="modal"
-                                                data-target="#editGenre" data-id="{{ $genre->id }}" data-nama="{{ $genre->nama }}" id="idEditButton">
+                                            <a href="{{ route('genre.edit', $genre->id) }}"
+                                                class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task" id="idEditButton">
                                                 <i class="fa fa-edit"></i>
-                                            </button>
+                                            </a>
                                             <form action="{{ route('genre.destroy', $genre->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

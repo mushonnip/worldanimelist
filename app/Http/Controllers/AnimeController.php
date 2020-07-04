@@ -47,7 +47,7 @@ class AnimeController extends Controller
             $request,
             [
                 'title' => 'required',
-                'episodes' => 'required',
+                'episodes' => 'required|numeric',
             ]
         );
         // $data = $request->all();

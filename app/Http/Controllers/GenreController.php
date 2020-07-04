@@ -41,11 +41,14 @@ class GenreController extends Controller
         $this->validate(
             $request,
             [
-                'nama' => 'required|max:20',
+                'nama' => 'required|unique:genres|max:20',
+            ],
+            [
+                'nama.unique' => '"Nama Genre" sudah ada'
             ]
         );
         Genre::create($request->all());
-        return redirect('/dashboard/genre');
+        return redirect('/dashboard/genre')->with('success', 'Genre bersahil ditambahkan');
         // return view('dashboard.genre.index', compact('genres'));
     }
 
@@ -68,7 +71,7 @@ class GenreController extends Controller
      */
     public function edit(Genre $genre)
     {
-        return view('dashboard.genre.edit', ['genre' => $genre]);
+        return view('dashboard.genre.edit', ['genre' => $genre])->with('success','Genre berhasil dirubah');
     }
 
     /**
@@ -100,6 +103,6 @@ class GenreController extends Controller
     public function destroy(Genre $genre)
     {
         $genre->delete();
-        return redirect('/dashboard/genre');
+        return redirect('/dashboard/genre')->with('success','Genre berhasil dihapus');
     }
 }

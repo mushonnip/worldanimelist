@@ -41,7 +41,16 @@ Create Anime
                     </div>
                 </div>
                 <div class="card-body">
-                    {{-- <div class="table-responsive"> --}}
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <strong>Error!</strong> Ada beberapa masalah dengan inputanmu.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <form action="{{ route('p.anime.store') }}" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             @csrf
